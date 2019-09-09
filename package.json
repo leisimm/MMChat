@@ -1,0 +1,69 @@
+{
+  "name": "mmchat",
+  "version": "0.0.1",
+  "description": "MiMiChat",
+  "author": "maschuet",
+  "license": "ISC",
+  "main": "./dist/electron/main.js",
+  "build": {
+    "productName": "MMChat",
+    "appId": "org.maschuet.mmchat",
+    "directories": {
+      "output": "build"
+    },
+    "files": [
+      "dist/electron/*"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "pack:main": "cross-env NODE_ENV=production webpack --config build-script/webpack.main.config.js",
+    "pack:renderer": "cross-env NODE_ENV=production webpack --config build-script/webpack.renderer.config.js",
+    "pack": "node ./build-script/build.js && npm run pack:main && npm run pack:renderer",
+    "build:dir": "npm run pack && electron-builder --dir",
+    "start": "npm run pack && electron ."
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.4",
+    "@babel/preset-env": "^7.5.4",
+    "autoprefixer": "^9.6.1",
+    "babel-loader": "^8.0.6",
+    "cross-env": "^5.2.0",
+    "css-loader": "^3.0.0",
+    "electron": "^6.0.4",
+    "electron-builder": "^21.0.15",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.7.0",
+    "node-loader": "^0.6.0",
+    "node-sass": "^4.12.0",
+    "postcss-loader": "^3.0.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "underscore-template-loader": "^1.0.0",
+    "url-loader": "^2.0.1",
+    "vue-loader": "^15.7.0",
+    "vue-template-compiler": "^2.6.10",
+    "webpack": "^4.39.2",
+    "webpack-cli": "^3.3.5",
+    "webpack-dev-server": "^3.7.2",
+    "webpack-merge": "^4.2.1"
+  },
+  "dependencies": {
+    "koa": "^2.8.1",
+    "lowdb": "^1.0.0",
+    "macaddress": "^0.2.9",
+    "mousetrap": "^1.6.3",
+    "socket.io": "^2.2.0",
+    "socket.io-client": "^2.2.0",
+    "uws": "^100.0.1",
+    "vue": "^2.6.10",
+    "vue-router": "^3.0.7",
+    "vuex": "^3.1.1"
+  }
+}
